@@ -194,9 +194,12 @@ export default {
           this.setMessageDataList({
             message_type: "notice",
             message_content: [
-              "欢迎来到小九的听歌房、欢迎点歌、欢迎各位朋友的到来、一起安安静静听歌吧。",
-              "项目持续更新中、有好的想法可以issues、看到我会更新",
-              "目前不是完整版、完整版本内嵌在我的博客中、这里会陆续更新完毕",
+              "欢迎来到WangScaler的听歌房、欢迎点歌、欢迎各位朋友的到来、一起安安静静听歌吧。",
+              "1.本房间禁止任何违法非法行为。",
+              "2.禁止谈论关于色情、政治等任何敏感信息。",
+              "3.聊天室属于开放平台，有任何以上行为与本人无关。",
+              "4.本房间属于开源项目的测试平台。非运行上线产品。",
+              "5.如果有以上行为，请及时举报至Q/V:1349320519。",
             ],
           });
       }, 1000);
@@ -243,8 +246,8 @@ export default {
 .chat {
   width: 100vw;
   height: 100vh;
-  background: url("https://public-1300678944.cos.ap-shanghai.myqcloud.com/blog/1636699165011bg.jpeg");
-  background: url("https://jiangly.com/_nuxt/img/banner_111.a6be22c.gif");
+  background: url("http://chat.scalerwang.com/1636699165011bg.jpegg");
+  background: url("http://chat.scalerwang.com/banner_111.a6be22c.gif");
   &-container {
     position: fixed;
     left: 8%;

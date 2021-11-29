@@ -3,10 +3,10 @@
     <div class="header-left flex_start">
       <div class="header-left-id">
         <span class="visible-xl visible-md visible-sm">ID:</span>
-        888
+        8888
       </div>
       <div class="header-left-name">
-        <span class="visible-xl visible-md visible-sm">听听听听听歌鸭</span>
+        <span class="visible-xl visible-md visible-sm">摸鱼聊天，禁止非法言论</span>
       </div>
       <div
         class="header-left-share flex_center"
@@ -91,10 +91,10 @@ export default {
       res.forEach((t) => (self[t].show = false));
     },
     toBlog() {
-      window.open("https://jiangly.com");
+      window.open("https://blog.scalerwang.com");
     },
     toGit() {
-      window.open("https://github.com/longyanjiang");
+      window.open("https://github.com/wangscaler");
     }
   },
   created() {},
@@ -102,7 +102,7 @@ export default {
   watch: {},
   computed: {
     copyText() {
-      return "分享内容";
+      return "http://chat.scalerwang.com";
     },
     onLineNum() {
       return this.$store.state.onlineUserList.length;

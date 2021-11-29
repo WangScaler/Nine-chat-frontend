@@ -16,6 +16,13 @@
           >
             房主
           </span>
+           <span
+            v-if="item.user_role === 'user'"
+            class="role"
+            :style="{ backgroundColor: roleBg(item.user_role) }"
+          >
+            房管
+          </span>
         </div>
         <div class="online-item-info-desc s-1-line">
           {{ item.user_sign }}
@@ -30,7 +37,7 @@ export default {
   computed: {
     roleBg() {
       return function (role) {
-        return role === "admin" ? "#701ec9" : null;
+        return role === "admin" ? "#701ec9" : "#3dcf32";
       };
     },
     onlineUserList() {
