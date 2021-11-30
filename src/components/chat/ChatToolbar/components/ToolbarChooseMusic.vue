@@ -36,7 +36,7 @@
           <div class="music-info">
             <div class="music-info-name">{{ item.music_name }}</div>
             <div class="music-info-desc s-1-line">
-              歌手：{{ item.music_artist }} 专辑:{{ item.music_album }}
+              歌手：{{ item.music_singer }} 专辑:{{ item.music_album }}
             </div>
           </div>
           <div class="music-btn" @click="chooseMusic(item)">
@@ -62,7 +62,7 @@ export default {
       params: {
         page: 1,
         pagesize: 30,
-        keyword: "孤城",
+        keyword: "",
       },
     };
   },
