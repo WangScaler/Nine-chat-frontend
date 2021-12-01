@@ -92,6 +92,7 @@ export default {
     },
     /* 客户端收藏音乐到歌单 */
     async loveMusic(val) {
+      val.music_artist = val.music_singer
       await collectMusic(val)
       this.$message.success("收藏歌曲成功！")
     },
