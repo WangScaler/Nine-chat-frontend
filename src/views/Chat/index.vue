@@ -29,7 +29,7 @@
         :showCloseBtn="false"
       >
         <div :style="{ marginLeft: '20px' }">
-          请注意、加入聊天室将自动播放音乐
+          注意：将自动播放音乐（声音很大、提前减小音量）
         </div>
         <div slot="footer">
           <btn theme="gradient" @click="passJoin">确认加入</btn>
