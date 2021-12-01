@@ -3,8 +3,9 @@
     <div class="bar" :style="{ width: `${width}%` }"></div>
     <div class="current-music">
       <icon name="progress-music" class="icon" scale="1.8" />
-      {{ music_info.music_album }} -
+      {{ music_info.music_name}} -
       {{ music_info.music_artist }}
+      
       <icon name="progress-collect" class="icon" scale="2.2" @click.native="collectMusic" />
       <icon
         name="progress-switch"
