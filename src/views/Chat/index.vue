@@ -95,6 +95,11 @@ export default {
       this.setMessageDataList({ message_type: "info", message_content: msg });
       this.initNotice();
     },
+    async offline(data) {
+      const { msg, onlineUser } = data
+      this.setOnlineUserList(onlineUser);
+      this.setMessageDataList({ message_type: "info", message_content: msg });
+    },
     /* 来了一条新消息 */
     message(data) {
       this.setMessageDataList(data.data);
@@ -161,7 +166,10 @@ export default {
         const { cname } = window.returnCitySN;
         this.$socket.client.io.opts.query = { token, address: cname };
         this.$socket.client.open();
-        Vue.prototype.$socket = this.$socket 
+       
+        // Vue.prototype.$socket = this.$socket
+        
+       
       }
     },
     /* 权限校验失败，重新登录 */
@@ -217,7 +225,7 @@ export default {
   },
   created() {},
   mounted() {
-    this.initUserAddress();
+     this.initUserAddress();
   },
   watch: {
     isLogin(n) {
