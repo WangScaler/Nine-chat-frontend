@@ -23,6 +23,10 @@
         <icon name="github" scale="1.8"  />
         <span class="visible-xl visible-md visible-sm">开源地址</span>
       </div>
+      <div class="header-right-item flex_center" @click="toBlog">
+        <icon name="chat-blog" scale="1.8"  />
+        <span class="visible-xl visible-md visible-sm">博客</span>
+      </div>
       <div class="header-right-item flex_center" @click.stop="openBox(1)">
         <icon name="chat-online" scale="1.8" class="icon" />
         <span class="visible-xl visible-md visible-sm">
@@ -31,22 +35,36 @@
       </div>
       <div class="header-right-item flex_center" @click.stop="openBox(2)">
         <icon name="chat-room" scale="1.8" class="icon" />
-        <span class="visible-xl visible-md visible-sm">房间</span>
+        <span class="visible-xl visible-md visible-sm">公告</span>
       </div>
       <div class="header-right-item flex_center" @click.stop="openBox(3)">
         <icon name="chat-mine" scale="1.8" class="icon" />
         <span class="visible-xl visible-md visible-sm">我的</span>
       </div>
-      <div class="header-right-item flex_center" @click="toBlog">
-        <icon name="chat-go" scale="1.8" class="icon" />
-        <span class="visible-xl visible-md visible-sm">前往</span>
+      <div class="header-right-item flex_center" @click="logoutSocket">
+        <icon name="close" scale="1.8" class="icon" />
+        <span class="visible-xl visible-md visible-sm">退出</span>
       </div>
     </div>
     <!-- popup -->
     <chat-popup :options="opt1" :top="60" :right="10" title="在线用户">
       <online-list />
     </chat-popup>
-    <chat-popup :options="opt2" :top="60" :right="10" title="房间信息" />
+    <chat-popup :options="opt2" :top="60" :right="10" title="房间信息" >
+    <div class="gongao">
+      欢迎来到WangScaler的听歌房、欢迎点歌、欢迎各位朋友的到来、一起安安静静听歌吧。
+      <br>
+              1.本房间禁止任何违法非法行为。
+                <br>
+              2.禁止谈论关于色情、政治等任何敏感信息。
+                <br>
+              3.聊天室属于开放平台，有任何以上行为与本人无关。
+                <br>
+              4.本房间属于开源项目的测试平台。非运行上线产品。
+                <br>
+              5.如果有以上行为，请及时举报至Q/V:1349320519。
+    </div>
+    </chat-popup>
     <chat-popup :options="opt3" :top="60" :right="10" title="个人中心" />
   </div>
 </template>
@@ -93,12 +111,18 @@ export default {
     toBlog() {
       window.open("https://blog.scalerwang.com");
     },
+    logoutSocket() {
+    this.$socket.client.emit("closeSocket", localStorage.chat_token)
+    localStorage.chat_token = "";
+    window.location.replace("https://blog.scalerwang.com");
+  },
     toGit() {
       window.open("https://github.com/wangscaler");
     }
   },
   created() {},
-  mounted() {},
+  mounted() {
+  },
   watch: {},
   computed: {
     copyText() {
@@ -165,6 +189,18 @@ export default {
         filter: brightness(1.2);
       }
     }
+  }
+  .gongao{
+   
+    text-align: left;
+    max-width: 500px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    letter-spacing: 3px;
+  
   }
 }
 </style>
