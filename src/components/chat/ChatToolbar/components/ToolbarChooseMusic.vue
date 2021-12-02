@@ -81,10 +81,16 @@ export default {
     async search() {
       if (!this.params.keyword) return;
       this.loading = true;
+      try{
       const res = await search(this.params);
-      this.loading = false;
+      
       this.musicList = res.data;
       this.isShowMusic = true;
+      }catch (error) {
+        console.log("未找到歌曲")
+      }
+      this.loading = false;
+      
     },
     /* 客户端点歌请求 */
     chooseMusic(val) {
