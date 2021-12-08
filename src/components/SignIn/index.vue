@@ -95,7 +95,7 @@ export default {
           this.$message.error("请输入2-32位数的账号");
           resolve(false);
         }
-        if (user_password.length > 8 || user_password.length < 2) {
+        if (user_password.length > 32 || user_password.length < 6) {
           this.$message.error("密码在6-32位数之间哟");
           resolve(false);
         }
