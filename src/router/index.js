@@ -1,24 +1,32 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Home from "../views/Chat";
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: "/",
-    name: "Home",
-    component: Home,
-  },
-  // {
-  //   path: "/home",
-  //   name: "Home",
-  //   component: () => import("../views/Home/index.vue"),
-  // },
+	{
+		path: '/',
+		name: 'Home',
+		component: () => import('../views/Chat')
+	},
+	{
+		path: '/login',
+		name: 'Login',
+		component: () => import('../views/login.vue')
+	},
+	{
+		path: '/register',
+		name: 'Register',
+		component: () => import('../views/register.vue')
+	},
+	{
+		path: '*',
+		redirect: '/'
+	}
 ];
 
 const router = new VueRouter({
-  routes,
+	routes
 });
 
 export default router;

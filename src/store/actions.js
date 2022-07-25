@@ -1,24 +1,37 @@
-import { getInfo } from "@/api/user";
+import { getInfo } from '@/api/user';
+import { queryRoomInfo } from '@/api/chat';
+import router from '../router/index';
 
 export default {
-  toggleSignInPopup({ commit }, isShow) {
-    commit("setSignInPopup", isShow);
-  },
+	/* 获取用户信息 */
+	async getUserInfo({ commit }) {
+		return new Promise(resolve => {
+			getInfo().then(res => {
+				const { user_info } = res.data;
+				commit('setUserInfo', user_info);
+				resolve(true);
+			});
+		});
+	},
 
-  toggleSignUpPopup({ commit }, isShow) {
-    commit("setSignUpPopup", isShow);
-  },
+	/* 获取当前房间信息 */
+	async getRoomInfo({ commit, state }) {
+		return new Promise(resolve => {
+			queryRoomInfo({ room_id: state.room_id }).then(res => {
+				commit('setRoomInfo', res.data);
+				resolve(true);
+			});
+		});
+	},
 
-  async initGetInfo({ commit }, token) {
-    commit("setToken", token);
-    localStorage.chat_token = token;
-    return new Promise((resolve) => {
-      getInfo().then((res) => {
-        const { userInfo } = res.data;
-        commit("setUserInfo", userInfo);
-        commit("setIsLogin", true);
-        resolve(true);
-      });
-    });
-  },
+	/* 退出登录 */
+	async logout({ commit }) {
+		return new Promise(resolve => {
+			localStorage.removeItem('chat_token');
+			commit('setToken', null);
+			commit('resetStore');
+			router.push('/login');
+			resolve();
+		});
+	}
 };

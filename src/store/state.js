@@ -1,15 +1,5 @@
-export default {
-  showSignInPopup: false,
-  showSignUpPopup: false,
-  isLogin: false,
-  token: null,
-  userInfo: null,
-  onlineUserList: [],
-  messageDataList: [],
-  music_info: null,
-  music_lrc: null,
-  music_src: null,
-  music_start_time: null,
-  current_music_time: null,
-  queue_music_list: [],
-};
+import getDefaultValue from './default';
+
+const state = getDefaultValue();
+
+export default state;

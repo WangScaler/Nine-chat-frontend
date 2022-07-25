@@ -1,4 +1,5 @@
 <template>
+<!-- <<<<<<< HEAD
   <div class="progress" v-if="music_info">
     <div class="bar" :style="{ width: `${width}%` }"></div>
     <div class="current-music">
@@ -15,6 +16,20 @@
       />
     </div>
   </div>
+======= -->
+	<div v-if="music_info" class="progress">
+		<div class="bar" :style="{ width: `${width}%` }"></div>
+		<div class="current-music">
+			<icon name="progress-music" class="icon" scale="1.8" />
+			<span class="music-album">
+				{{ music_info.music_album }} -
+				{{ music_info.music_singer }}
+			</span>
+			<icon name="progress-collect" class="icon" scale="2.2" @click.native="collectMusic" />
+			<icon name="progress-switch" class="icon" scale="2.2" @click.native="$socket.client.emit('cutMusic', music_info)" />
+		</div>
+	</div>
+<!-- >>>>>>> e269c40c8398d0f438758f2ce454a0cc8b761fa0 -->
 </template>
 
 <script>
@@ -22,12 +37,6 @@ import { mapState } from "vuex";
 import { collectMusic } from "@/api/music";
 
 export default {
-  methods: {
-    async collectMusic(){
-      await collectMusic(this.music_info)
-      this.$message.success("歌曲收藏成功！")
-    }
-  },
   computed: {
     ...mapState(["current_music_time", "music_info"]),
     width() {
@@ -40,10 +49,16 @@ export default {
       return width > 100 ? 100 : width;
     },
   },
+  methods: {
+    async collectMusic() {
+      await collectMusic(this.music_info);
+      this.$message.success("歌曲收藏成功！");
+    },
+  },
 };
 </script>
 <style lang="less" scoped>
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 820px) {
   .current-music {
     top: -20px !important;
   }
@@ -51,7 +66,7 @@ export default {
 .progress {
   height: 2px;
   width: 100%;
-  background: #eee;
+  background: @message-border-color;
   position: relative;
   .bar {
     height: 2px;
@@ -67,6 +82,12 @@ export default {
     color: #999;
     user-select: none;
     z-index: 3;
+    .music-album {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      max-width: 300px;
+    }
     .icon {
       transition: all 0.3s;
       margin-right: 5px;
