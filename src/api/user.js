@@ -11,3 +11,7 @@ export const login = (data) => {
 export const getInfo = (data) => {
   return request("get", "/user/getInfo", data);
 };
+
+export const update = (data) => {
+  return request("post", "/user/update", data);
+};

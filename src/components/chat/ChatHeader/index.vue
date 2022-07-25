@@ -6,7 +6,7 @@
         8888
       </div>
       <div class="header-left-name">
-        <span class="visible-xl visible-md visible-sm">摸鱼聊天，禁止非法言论</span>
+        <span class="visible-xl visible-md visible-sm">技术交流，禁止非法操作</span>
       </div>
       <div
         class="header-left-share flex_center"
@@ -26,6 +26,14 @@
       <div class="header-right-item flex_center" @click="toBlog">
         <icon name="chat-blog" scale="1.8"  />
         <span class="visible-xl visible-md visible-sm">博客</span>
+      </div>
+       <div class="header-right-item flex_center" @click="toJuejin">
+        <icon name="robot" scale="1.8"  />
+        <span class="visible-xl visible-md visible-sm">掘金挖矿</span>
+      </div>
+        <div class="header-right-item flex_center" @click="toMath">
+        <icon name="robot" scale="1.8"  />
+        <span class="visible-xl visible-md visible-sm">掘金数字</span>
       </div>
       <div class="header-right-item flex_center" @click.stop="openBox(1)">
         <icon name="chat-online" scale="1.8" class="icon" />
@@ -63,9 +71,15 @@
               4.本房间属于开源项目的测试平台。非运行上线产品。
                 <br>
               5.如果有以上行为，请及时举报至Q/V:1349320519。
+              <br>
+              6.感谢nihao、spirit资金支持，九儿的书屋、摸鱼大王、古月_歌代码贡献。
+               <br>
+              7.祝大家新年快乐，虎年大吉。
     </div>
     </chat-popup>
-    <chat-popup :options="opt3" :top="60" :right="10" title="个人中心" />
+    <chat-popup :options="opt3" :top="60" :right="10" title="个人中心">
+      <person @update="update"/>
+    </chat-popup>
   </div>
 </template>
 
@@ -73,8 +87,11 @@
 import Clipboard from "clipboard";
 import ChatPopup from "@/components/ChatPopup";
 import OnlineList from "./components/OnLineList.vue";
+import Person from "./components/Person"
+import { update } from "@/api/user"
+
 export default {
-  components: { ChatPopup, OnlineList },
+  components: { ChatPopup, OnlineList, Person },
   data() {
     return {
       opt1: {
@@ -109,15 +126,31 @@ export default {
       res.forEach((t) => (self[t].show = false));
     },
     toBlog() {
-      window.open("https://blog.scalerwang.com");
+      window.open("https://blog.wangscaler.com");
+    },
+    toMath(){
+      window.open("http://math.wangscaler.com");
+    },
+    toJuejin(){
+      window.open("http://juejin.wangscaler.com");
     },
     logoutSocket() {
     this.$socket.client.emit("closeSocket", localStorage.chat_token)
     localStorage.chat_token = "";
-    window.location.replace("https://blog.scalerwang.com");
+    window.location.replace("https://blog.wangscaler.com");
   },
     toGit() {
       window.open("https://github.com/wangscaler");
+    },
+    async update(v) {
+      const res = await update(v)
+      if (res.success) {
+        this.opt3.show = false
+        this.$message.success("修改成功!")
+      } else {
+        this.opt3.show = false
+        this.$message.error("修改失败!")
+      }
     }
   },
   created() {},
@@ -126,7 +159,7 @@ export default {
   watch: {},
   computed: {
     copyText() {
-      return "http://chat.scalerwang.com";
+      return "http://chat.wangscaler.com";
     },
     onLineNum() {
       return this.$store.state.onlineUserList.length;

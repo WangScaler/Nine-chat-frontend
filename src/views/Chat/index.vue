@@ -29,7 +29,8 @@
         :showCloseBtn="false"
       >
         <div :style="{ marginLeft: '20px' }">
-          注意：将自动播放音乐（声音很大、提前减小音量）
+          注意：1、将自动播放音乐，声音很大，提前减小音量
+               2、人多配置差，多刷新几遍，看见聊天记录才算成功
         </div>
         <div slot="footer">
           <btn theme="gradient" @click="passJoin">确认加入</btn>
@@ -208,6 +209,8 @@ export default {
               "3.聊天室属于开放平台，有任何以上行为与本人无关。",
               "4.本房间属于开源项目的测试平台。非运行上线产品。",
               "5.如果有以上行为，请及时举报至Q/V:1349320519。",
+              "6.感谢nihao、spirit资金支持，九二的书屋、摸鱼大王、古月_歌代码贡献",
+              "7.祝大家新年快乐，虎年大吉。",
             ],
           });
       }, 1000);
@@ -254,8 +257,8 @@ export default {
 .chat {
   width: 100vw;
   height: 100vh;
-  background: url("http://chat.scalerwang.com/1636699165011bg.jpegg");
-  background: url("http://chat.scalerwang.com/banner_111.a6be22c.gif");
+  background: url("https://chat.wangscaler.com/1636699165011bg.jpegg");
+  background: url("https://chat.wangscaler.com/banner_111.a6be22c.gif");
   &-container {
     position: fixed;
     left: 8%;

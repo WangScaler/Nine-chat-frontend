@@ -35,11 +35,12 @@
 
         <img class="avatar" :src="item.userInfo.user_avatar" />
       </span>
-
-      <!-- info -->
-      <span v-if="item.message_type === 'info'" class="msg">
-        {{ item.message_content }}
+       <!-- info -->
+      <span v-if="item.message_type === 'info'"class="msg">
+      {{item.message_content }}
       </span>
+     
+
 
       <!-- notice -->
       <span v-if="item.message_type === 'notice'" class="notice-box">
@@ -55,6 +56,9 @@
 </template>
 
 <script>
+import {
+    word,
+} from './constant';
 import { replaceEmotionText } from "@/components/Emotion/emotion.js";
 import { throttle } from "@/utils/tools";
 import { mapMutations } from "vuex";
@@ -81,6 +85,7 @@ export default {
       const scrollTop = el.scrollTop;
       const scrollHeight = el.scrollHeight;
       this.isVisible = el.offsetHeight + scrollTop - scrollHeight > -450;
+   
       /* 滑到顶部了加载更多消息 */
       const msgEl = document.querySelector(`.message-box-item`);
       this.isVisible && (this.unReadNum = 0);
@@ -133,7 +138,7 @@ export default {
       }
       
       return timeSpanStr;
-      }
+      },
   },
   created() {},
   mounted() {
@@ -159,7 +164,7 @@ export default {
     },
     messageClass() {
       return (item) => {
-        const { user_id, message_type } = item;
+        const { user_id, message_type} = item;
         if (["text", "img"].includes(message_type)) {
           return user_id === this.mineId ? "mine" : "other";
         }
